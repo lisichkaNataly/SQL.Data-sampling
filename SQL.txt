@@ -1,0 +1,95 @@
+Домашнее задание
+
+Задание 1:
+
+1)
+postgres=# \c skypro
+Вы подключены к базе данных "skypro" как пользователь "postgres".
+skypro=# SELECT * FROM employee;
+ id | first_name | last_name | gender | age
+----+------------+-----------+--------+-----
+  1 | Natalya    | Izmaylova | woman  |  29
+  2 | Vladimir   | Moiseev   | man    |  56
+  4 | Roman      | Neshataev | man    |  22
+(3 ёЄЁюъш)
+skypro=# INSERT INTO employee (
+skypro(# first_name, last_name, gender, age)
+skypro-# VALUES ('Olga', 'Sidorova', 'woman', 45);
+INSERT 0 1
+skypro=# INSERT INTO employee (
+skypro(# first_name, last_name, gender, age)
+skypro-# VALUES ('Elena', 'Birina', 'woman', 32);
+INSERT 0 1
+skypro=# SELECT * FROM employee;
+ id | first_name | last_name | gender | age
+----+------------+-----------+--------+-----
+  1 | Natalya    | Izmaylova | woman  |  29
+  2 | Vladimir   | Moiseev   | man    |  56
+  4 | Roman      | Neshataev | man    |  22
+  5 | Olga       | Sidorova  | woman  |  45
+  6 | Elena      | Birina    | woman  |  32
+(5 ёЄЁюъ)
+
+2)
+skypro=# SELECT first_name AS Имя,
+skypro-# last_name AS Фамилия
+skypro-# FROM employee
+skypro-# GROUP BY Имя, Фамилия;
+   Имя    |  Фамилия
+----------+-----------
+ Natalya  | Izmaylova
+ Elena    | Birina
+ Vladimir | Moiseev
+ Roman    | Neshataev
+ Olga     | Sidorova
+(5 ёЄЁюъ)
+
+3)
+skypro=# SELECT first_name, last_name
+skypro-# FROM employee
+skypro-# WHERE age < 30 OR age > 50
+skypro-# ORDER BY first_name, last_name;
+ first_name | last_name
+------------+-----------
+ Natalya    | Izmaylova
+ Roman      | Neshataev
+ Vladimir   | Moiseev
+(3 ёЄЁюъш)
+
+4)
+skypro=# SELECT first_name, last_name
+skypro-#  FROM employee
+skypro-# WHERE age >= 30 AND age <= 50
+skypro-# ORDER BY first_name, last_name;
+ first_name | last_name
+------------+-----------
+ Elena      | Birina
+ Olga       | Sidorova
+(2 ёЄЁюъш)
+
+5)
+skypro=# SELECT last_name, first_name
+skypro-# FROM employee
+skypro-# ORDER BY last_name DESC, first_name;
+ last_name | first_name
+-----------+------------
+ Sidorova  | Olga
+ Neshataev | Roman
+ Moiseev   | Vladimir
+ Izmaylova | Natalya
+ Birina    | Elena
+(5 ёЄЁюъ)
+
+6)
+skypro=# SELECT * FROM employee
+skypro-#  WHERE CHAR_LENGTH (first_name) > 4;
+ id | first_name | last_name | gender | age
+----+------------+-----------+--------+-----
+  1 | Natalya    | Izmaylova | woman  |  29
+  2 | Vladimir   | Moiseev   | man    |  56
+  4 | Roman      | Neshataev | man    |  22
+  6 | Elena      | Birina    | woman  |  32
+(4 ёЄЁюъш)
+
+Задание 2:
+
