@@ -93,3 +93,66 @@ skypro-#  WHERE CHAR_LENGTH (first_name) > 4;
 
 Задание 2:
 
+1)
+
+skypro=# UPDATE employee SET first_name = 'Natalya' WHERE id = 5;
+UPDATE 1
+skypro=# UPDATE employee SET first_name = 'Vladimir' WHERE id = 4;
+UPDATE 1
+skypro=# SELECT * FROM employee;
+ id | first_name | last_name | gender | age
+----+------------+-----------+--------+-----
+  1 | Natalya    | Izmaylova | woman  |  29
+  2 | Vladimir   | Moiseev   | man    |  56
+  5 | Natalya    | Sidorova  | woman  |  45
+  6 | Ludmila    | Birina    | woman  |  32
+  4 | Vladimir   | Neshataev | man    |  22
+(5 ёЄЁюъ)
+
+
+2)
+
+skypro=#  SELECT first_name AS Имя,
+skypro-#  AVG (age) AS Суммарный_возраст
+skypro-# FROM employee
+skypro-# GROUP BY Имя
+skypro-# ORDER BY Имя;
+   Имя    |  Суммарный_возраст
+----------+---------------------
+ Ludmila  | 32.0000000000000000
+ Natalya  | 37.0000000000000000
+ Vladimir | 39.0000000000000000
+(3 ёЄЁюъш)
+
+3)
+
+skypro=# SELECT  first_name AS Имя, age AS Самый_юный_возраст
+skypro-# FROM employee
+skypro-# WHERE age =(
+skypro(# SELECT MIN(age)
+skypro(# FROM employee
+skypro(# );
+   Имя    | Самый_юный_возраст
+----------+--------------------
+ Vladimir |                 22
+(1 ёЄЁюър)
+
+4)
+
+skypro=# SELECT  first_name AS Имя, age AS Самый_максимальный_возраст
+skypro-# FROM employee
+skypro-# WHERE NOT first_name = 'Ludmila'
+skypro-# ORDER BY Имя, Самый_максимальный_возраст ASC;
+   Имя    | Самый_максимальный_возраст
+----------+----------------------------
+ Natalya  |                         29
+ Natalya  |                         45
+ Vladimir |                         22
+ Vladimir |                         56
+(4 ёЄЁюъш)
+
+
+
+
+
+
